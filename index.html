@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth bg-[#050506] text-white">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krypton Car — Estética Automotiva Ultra-Premium</title>
+  <link rel="icon" type="image/webp" href="assets/img/favicon.webp">
+  
+  <!-- Fontes Google: Space Grotesk (Títulos Modernos) e Inter (Corpo Sofisticado) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kryptonAmber: '#DA6815',
+            absBlack: '#050506',
+            carbonGray: '#121214',
+            mutedPlat: '#8E8E93',
+          },
+          fontFamily: {
+            title: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="selection:bg-kryptonAmber selection:text-absBlack antialiased intro-active">
+
+  <!-- Cursor Minimalista Dinâmico -->
+  <div id="custom-cursor" class="hidden lg:block"></div>
+  <div id="custom-cursor-ring" class="hidden lg:block"></div>
+
+  <!-- [ HEADER: Menu Superior Estilo macOS Finder Tab ] -->
+  <header id="main-header" class="fixed top-0 left-1/2 -translate-x-1/2 w-[calc(100%-32px)] md:w-[calc(100%-64px)] max-w-6xl z-50 py-4 px-6 md:px-8 flex justify-between items-center mac-header-tab">
+    <!-- Canto Esquerdo: Mac Controls & Logo -->
+    <div class="flex items-center">
+      <div class="mac-dot-container hidden sm:flex items-center gap-1.5 mr-6">
+        <span class="mac-dot bg-[#FF5F56]"></span>
+        <span class="mac-dot bg-[#FFBD2E]"></span>
+        <span class="mac-dot bg-[#27C93F]"></span>
+      </div>
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 hoverable select-none">
+        <img src="assets/img/logo branca.webp" alt="Krypton Car Logo" class="h-5 transition-transform duration-300 hover:scale-102">
+      </a>
+    </div>
+
+    <!-- Nav Links (Desktop) -->
+    <nav class="hidden md:flex items-center gap-8 font-title text-[10px] tracking-[0.25em] uppercase text-mutedPlat">
+      <a href="#hero" class="hoverable hover:text-white transition-colors duration-300">Início</a>
+      <a href="#manifesto" class="hoverable hover:text-white transition-colors duration-300">Manifesto</a>
+      <a href="#servicos" class="hoverable hover:text-white transition-colors duration-300">Serviços</a>
+      <a href="#anatomia" class="hoverable hover:text-white transition-colors duration-300">Anatomia</a>
+      <a href="#experiencia-cinema" class="hoverable hover:text-white transition-colors duration-300">Filme</a>
+      <a href="#agendamento" class="hoverable hover:text-white transition-colors duration-300">Agendamento</a>
+      <a href="#contato" class="hoverable hover:text-white transition-colors duration-300">Contato</a>
+    </nav>
+
+    <!-- Botão de Agendamento Magnético -->
+    <div>
+      <a href="#agendamento" id="magnetic-header-btn" class="hoverable btn-cobre-outline text-[9px] tracking-[0.2em] uppercase font-title py-2 px-5 rounded-full inline-block">
+        Reservar Agora
+      </a>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- DOBRA 1: Hero Section (A Arte da Preservação) -->
+  <!-- ========================================== -->
+  <section id="hero" class="relative min-h-screen w-full flex flex-col justify-start pt-32 pb-16 px-6 md:px-12 overflow-hidden bg-absBlack">
+    <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+      <!-- Vídeo local do carro sujo -->
+      <video id="hero-video" class="w-full h-full object-cover pointer-events-none opacity-100 transition-opacity duration-1000" autoplay muted playsinline>
+        <source src="assets/video/video-desktop.webm" type="video/webm">
+      </video>
+      
+      <!-- Canvas interativo que revela o carro limpo -->
+      <canvas id="cleaning-canvas" class="absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none z-10 transition-opacity duration-1000"></canvas>
+      
+      <!-- Máscara de Contraste e Degradê para legibilidade -->
+      <div id="hero-overlay" class="absolute inset-0 bg-gradient-to-b from-black/5 via-black/20 to-[#050506] opacity-0 transition-opacity duration-1000 z-20 pointer-events-none"></div>
+    </div>
+
+    <!-- Conteúdo Superior da Hero (Slogan Minimalista) -->
+    <div class="relative z-30 w-full max-w-5xl mx-auto flex flex-col items-center text-center pt-8">
+      <h1 id="hero-title" class="font-title font-light text-white/90 text-sm md:text-base lg:text-lg tracking-[0.28em] uppercase opacity-0 translate-y-4 transition-all duration-1000 delay-200 hero-slogan-main leading-relaxed mb-6">
+        Descubra o verdadeiro <span class="text-metallic-cobre italic font-normal">brilho</span> do seu automóvel.
+      </h1>
+    </div>
+
+    <!-- Container do Botão Limpar Mobile na base da Hero, abaixo do carro -->
+    <div class="relative z-30 mt-auto w-full flex justify-center pb-6 md:hidden">
+      <button id="open-cleaning-popup-btn" class="opacity-0 translate-y-4 transition-all duration-500 px-5 py-2.5 border border-white/10 hover:border-kryptonAmber/40 hover:bg-white/5 bg-transparent text-zinc-400 hover:text-white rounded-full text-[9px] font-title uppercase tracking-[0.2em] flex items-center justify-center hover:scale-102 active:scale-98 hover:shadow-[0_0_15px_rgba(218,104,21,0.15)] duration-300">
+        <span>Interagir e Limpar</span>
+      </button>
+    </div>
+
+    <!-- Botão Sujar Novamente -->
+    <div id="reset-dirty-container" class="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 transition-all duration-500 opacity-0 pointer-events-none hidden md:block">
+      <button id="reset-dirty-btn" class="hoverable px-4 py-2 border border-white/10 bg-black/40 hover:bg-black/80 hover:border-kryptonAmber/40 text-mutedPlat hover:text-white rounded-full text-[10px] font-title uppercase tracking-widest transition-all">
+        [ Sujar Novamente ]
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- DOBRA 2: Nossa Filosofia (O Manifesto)     -->
+  <!-- ========================================== -->
+  <section id="manifesto" class="relative min-h-screen w-full bg-absBlack flex flex-col justify-center py-24 px-6 md:px-12">
+    <div class="w-full max-w-4xl mx-auto text-left">
+      <div class="w-12 h-[1px] bg-kryptonAmber/30 mb-8"></div>
+      <span class="font-title text-[10px] text-kryptonAmber tracking-[0.3em] uppercase mb-6 block">// NOSSA FILOSOFIA</span>
+
+      <h2 id="manifesto-text-container" class="font-title text-xl md:text-3xl lg:text-4xl font-bold leading-relaxed text-left select-none mb-12">
+        <!-- As palavras serão carregadas e animadas no scroll via JS -->
+      </h2>
+
+      <!-- Seletor de Abas Minimalistas para Vertentes -->
+      <div class="border-t border-white/5 pt-8">
+        <div class="flex gap-8 border-b border-white/5 pb-4 font-title text-xs tracking-wider uppercase">
+          <button onclick="switchTab('artesanal')" id="tab-btn-artesanal" class="hoverable pb-4 border-b-2 border-kryptonAmber text-white transition-all">
+            Cuidado Artesanal
+          </button>
+          <button onclick="switchTab('premium')" id="tab-btn-premium" class="hoverable pb-4 border-b-2 border-transparent text-mutedPlat hover:text-white transition-all">
+            Proteção Premium
+          </button>
+        </div>
+        
+        <!-- Conteúdo das Abas -->
+        <div class="mt-6 min-h-[80px]">
+          <p id="tab-content-text" class="font-body text-sm text-mutedPlat leading-relaxed transition-opacity duration-300">
+            Processos manuais meticulosos, polimento em múltiplas etapas e foco obsessivo nos acabamentos internos e externos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- NOVA DOBRA: Serviços (Carrossel Infinito)   -->
+  <!-- ========================================== -->
+  <section id="servicos" class="relative py-24 bg-absBlack border-t border-white/5 overflow-hidden">
+    <div class="w-full max-w-6xl mx-auto px-6 md:px-12 mb-12">
+      <div class="w-12 h-[1px] bg-kryptonAmber/30 mb-8"></div>
+      <span class="font-title text-[10px] text-kryptonAmber tracking-[0.3em] uppercase mb-4 block">// NOSSOS SERVIÇOS</span>
+      <h2 class="font-title text-3xl md:text-5xl font-bold uppercase tracking-tight text-white">
+        Especialidades Krypton
+      </h2>
+    </div>
+
+    <!-- Carrossel Infinito Track -->
+    <div class="services-carousel-container">
+      <div class="services-track">
+        <!-- Loop 1 -->
+        <div class="service-card hoverable">
+          <img src="assets/img/Revitalização de Faróis.png" alt="Revitalização de Faróis" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Revitalização de Faróis</h4>
+          </div>
+        </div>
+        <div class="service-card hoverable">
+          <img src="assets/img/Polimento Comercial.png" alt="Polimento Comercial" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Polimento Comercial</h4>
+          </div>
+        </div>
+        <div class="service-card hoverable">
+          <img src="assets/img/Oxigenização com Ozônio.png" alt="Oxigenização com Ozônio" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Oxigenação com Ozônio</h4>
+          </div>
+        </div>
+        <div class="service-card hoverable">
+          <img src="assets/img/lavagemcompleta.png" alt="Lavagem Completa" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Lavagem Completa</h4>
+          </div>
+        </div>
+        <div class="service-card hoverable">
+          <img src="assets/img/Lavagem Técnica de Motor.png" alt="Lavagem Técnica de Motor" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Lavagem Técnica de Motor</h4>
+          </div>
+        </div>
+        <div class="service-card hoverable">
+          <img src="assets/img/Higienização Interna.png" alt="Higienização Interna" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Higienização Interna</h4>
+          </div>
+        </div>
+
+        <!-- Loop 2 (Duplicado para efeito infinito contínuo) -->
+        <div class="service-card hoverable">
+          <img src="assets/img/Revitalização de Faróis.png" alt="Revitalização de Faróis" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Revitalização de Faróis</h4>
+          </div>
+        </div>
+        <div class="service-card hoverable">
+          <img src="assets/img/Polimento Comercial.png" alt="Polimento Comercial" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Polimento Comercial</h4>
+          </div>
+        </div>
+        <div class="service-card hoverable">
+          <img src="assets/img/Oxigenização com Ozônio.png" alt="Oxigenização com Ozônio" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Oxigenação com Ozônio</h4>
+          </div>
+        </div>
+        <div class="service-card hoverable">
+          <img src="assets/img/lavagemcompleta.png" alt="Lavagem Completa" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Lavagem Completa</h4>
+          </div>
+        </div>
+        <div class="service-card hoverable">
+          <img src="assets/img/Lavagem Técnica de Motor.png" alt="Lavagem Técnica de Motor" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Lavagem Técnica de Motor</h4>
+          </div>
+        </div>
+        <div class="service-card hoverable">
+          <img src="assets/img/Higienização Interna.png" alt="Higienização Interna" class="service-card-img">
+          <div class="service-card-overlay">
+            <h4 class="service-card-title">Higienização Interna</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- DOBRA 3: Anatomia do Cuidado (Inspeção)    -->
+  <!-- ========================================== -->
+  <section id="anatomia" class="relative min-h-screen w-full bg-carbonGray/50 py-12 md:py-24 px-6 md:px-12 flex flex-col justify-start md:justify-center items-center border-y border-white/5 overflow-hidden">
+    <!-- Cabeçalho Centralizado -->
+    <div class="w-full max-w-4xl mx-auto text-center mb-6 md:mb-16 z-10">
+      <span class="font-title text-[10px] text-kryptonAmber tracking-[0.3em] uppercase mb-4 block">// INSPEÇÃO INTERATIVA</span>
+      <h3 class="font-title text-3xl md:text-5xl font-bold uppercase tracking-tight text-white mb-6">
+        Anatomia do Cuidado
+      </h3>
+      <p class="font-body text-xs md:text-sm text-mutedPlat max-w-2xl mx-auto leading-relaxed">
+        Observe a precisão de cada componente. Role a página para fazer o carro se posicionar no centro e clique nos hotspots interativos para revelar detalhes de cada serviço.
+      </p>
+    </div>
+
+    <!-- Container do Carro Animado -->
+    <div id="anatomia-car-wrapper" class="anatomia-car-wrapper">
+      <img src="assets/img/carro sem fundo.webp" alt="Krypton Car Performance" class="w-full h-auto object-contain block select-none">
+
+      <!-- Ponto 1: Capô (Pintura Frontal) -->
+      <div class="hotspot-point" style="top: 54%; left: 80%;" data-hotspot="capo">
+        <button onclick="toggleHotspotPopover(event, 'capo')" class="hoverable hotspot-btn">
+          <div class="hotspot-core"></div>
+          <div class="hotspot-ping"></div>
+        </button>
+        <div id="popover-capo" class="hotspot-popover w-[310px]">
+          <h4 class="font-title text-xs font-bold text-white uppercase mb-2 border-b border-white/5 pb-2 flex justify-between gap-2">
+            <span>Correção de Pintura & Vitrificação</span>
+            <span class="text-kryptonAmber whitespace-nowrap">[ BRILHO ]</span>
+          </h4>
+          <p class="font-body text-[11px] text-mutedPlat leading-relaxed">
+            Eliminamos micro-riscos e aplicamos uma barreira cerâmica de alta tecnologia. O resultado é um brilho tridimensional com efeito hidrofóbico, protegendo a pintura contra agentes químicos, raios UV e seiva de árvores.
+          </p>
+        </div>
+      </div>
+
+      <!-- Ponto 2: Para-brisa (Vidros) -->
+      <div class="hotspot-point" style="top: 54%; left: 61%;" data-hotspot="parabrisa">
+        <button onclick="toggleHotspotPopover(event, 'parabrisa')" class="hoverable hotspot-btn">
+          <div class="hotspot-core"></div>
+          <div class="hotspot-ping"></div>
+        </button>
+        <div id="popover-parabrisa" class="hotspot-popover w-[310px]">
+          <h4 class="font-title text-xs font-bold text-white uppercase mb-2 border-b border-white/5 pb-2 flex justify-between gap-2">
+            <span>Cristalização de Vidros</span>
+            <span class="text-kryptonAmber whitespace-nowrap">[ VISIBILIDADE ]</span>
+          </h4>
+          <p class="font-body text-[11px] text-mutedPlat leading-relaxed">
+            Um tratamento repelente de água avançado para os vidros. Em dias de chuva pesada, as gotas deslizam facilmente com o vento, garantindo total nitidez, segurança e facilidade na limpeza de sujeiras do dia a dia.
+          </p>
+        </div>
+      </div>
+
+      <!-- Ponto 3: Teto Solar / Centro do Teto (Olhando para o Interior) -->
+      <div class="hotspot-point" style="top: 54%; left: 46%;" data-hotspot="teto">
+        <button onclick="toggleHotspotPopover(event, 'teto')" class="hoverable hotspot-btn">
+          <div class="hotspot-core"></div>
+          <div class="hotspot-ping"></div>
+        </button>
+        <div id="popover-teto" class="hotspot-popover w-[310px]">
+          <h4 class="font-title text-xs font-bold text-white uppercase mb-2 border-b border-white/5 pb-2 flex justify-between gap-2">
+            <span>Higienização Interna Detalhada</span>
+            <span class="text-kryptonAmber whitespace-nowrap">[ SAÚDE ]</span>
+          </h4>
+          <p class="font-body text-[11px] text-mutedPlat leading-relaxed">
+            Muito além de uma simples aspiração. Realizamos a higienização profunda de estofados, hidratação de couros e eliminação de fungos e bactérias por oxi-sanitização, devolvendo aquele aspecto e cheiro de carro novo.
+          </p>
+        </div>
+      </div>
+
+      <!-- Ponto 4: Traseira (Lanternas e Plásticos) -->
+      <div class="hotspot-point" style="top: 65%; left: 6%;" data-hotspot="traseira">
+        <button onclick="toggleHotspotPopover(event, 'traseira')" class="hoverable hotspot-btn">
+          <div class="hotspot-core"></div>
+          <div class="hotspot-ping"></div>
+        </button>
+        <div id="popover-traseira" class="hotspot-popover w-[310px]">
+          <h4 class="font-title text-xs font-bold text-white uppercase mb-2 border-b border-white/5 pb-2 flex justify-between gap-2">
+            <span>Revitalização de Plásticos & Lanternas</span>
+            <span class="text-kryptonAmber whitespace-nowrap">[ DETALHES ]</span>
+          </h4>
+          <p class="font-body text-[11px] text-mutedPlat leading-relaxed">
+            As lanternas traseiras e os plásticos externos sofrem com a ação do tempo. Protegemos e restauramos o tom original das peças externas com selantes específicos, evitando o ressecamento e o visual esbrançado.
+          </p>
+        </div>
+      </div>
+
+      <!-- Ponto 5: Lateral / Caixa de Roda (Rodas e Pneus) -->
+      <div class="hotspot-point" style="top: 87%; left: 27%;" data-hotspot="roda">
+        <button onclick="toggleHotspotPopover(event, 'roda')" class="hoverable hotspot-btn">
+          <div class="hotspot-core"></div>
+          <div class="hotspot-ping"></div>
+        </button>
+        <div id="popover-roda" class="hotspot-popover w-[310px]">
+          <h4 class="font-title text-xs font-bold text-white uppercase mb-2 border-b border-white/5 pb-2 flex justify-between gap-2">
+            <span>Detalhamento de Rodas & Remoção Ferrosa</span>
+            <span class="text-kryptonAmber whitespace-nowrap">[ RODAS ]</span>
+          </h4>
+          <p class="font-body text-[11px] text-mutedPlat leading-relaxed">
+            A fuligem dos freios acumula e danifica o acabamento das rodas. Fazemos uma limpeza química detalhada para remover toda a contaminação ferrosa, finalizando com proteção térmica que repele a sujeira por muito mais tempo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- NOVA DOBRA: Experiência Cinematográfica   -->
+  <!-- ========================================== -->
+  <section id="experiencia-cinema" class="relative bg-absBlack py-16 px-4 md:px-8 flex justify-center items-center overflow-hidden">
+    <div class="w-full max-w-[1700px]">
+      <!-- Container do vídeo expandido para preencher quase toda a tela -->
+      <div id="video-container" class="relative w-full h-[75vh] md:h-[85vh] rounded-[28px] md:rounded-[40px] border border-white/5 overflow-hidden bg-carbonGray/40 shadow-2xl opacity-0 scale-105 blur-md transition-all duration-[1800ms] ease-out">
+        
+        <!-- Gradiente de Contraste para Profundidade -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/30 z-10 pointer-events-none"></div>
+
+        <!-- Vídeo Desktop (oculto em telas pequenas) -->
+        <video id="loop-video-desktop" class="hidden md:block w-full h-full object-cover pointer-events-none" loop muted playsinline preload="none">
+          <source src="assets/video/videodesktopcarro.webm" type="video/webm">
+        </video>
+
+        <!-- Vídeo Mobile (oculto em telas grandes) -->
+        <video id="loop-video-mobile" class="block md:hidden w-full h-full object-cover pointer-events-none" loop muted playsinline preload="none">
+          <source src="assets/video/videomobilecarro.webm" type="video/webm">
+        </video>
+
+        <!-- Selo flutuante de luxo no canto -->
+        <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
+          <span class="w-1.5 h-1.5 rounded-full bg-kryptonAmber animate-pulse"></span>
+          <span class="font-title text-[8px] tracking-[0.2em] text-white/80 uppercase">KRYPTON FILM</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- NOVA DOBRA: Depoimentos Exclusivos        -->
+  <!-- ========================================== -->
+  <section id="feedbacks" class="relative min-h-[80vh] py-36 md:py-48 px-6 flex flex-col justify-center items-center overflow-hidden bg-[#050506]">
+    
+    <!-- Imagem de fundo Parallax Centralizada (Aumentada no mobile, original no desktop) -->
+    <div id="feedback-bg" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] md:w-[90vw] max-w-none md:max-w-[1000px] h-[1100px] md:h-[600px] bg-contain bg-no-repeat bg-center pointer-events-none z-0 opacity-30" style="background-image: url('assets/img/bgfeedbacks.webp'); transform: translate3d(-50%, -50%, 0); will-change: transform;"></div>
+
+    <!-- Máscaras de Gradiente para Integração Perfeita (Sem bordas duras) -->
+    <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#050506] to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#050506] to-transparent z-10 pointer-events-none"></div>
+
+    <!-- Conteúdo dos Depoimentos -->
+    <div class="relative z-20 w-full max-w-4xl mx-auto flex flex-col items-center text-center">
+      
+      <!-- Indicador da Seção -->
+      <span class="font-title text-[10px] text-kryptonAmber tracking-[0.3em] uppercase mb-4 block">// DEPOIMENTOS EXCLUSIVOS</span>
+
+      <!-- Estrelas de Avaliação -->
+      <div class="flex gap-1.5 mb-8">
+        <span class="text-kryptonAmber text-base">★</span>
+        <span class="text-kryptonAmber text-base">★</span>
+        <span class="text-kryptonAmber text-base">★</span>
+        <span class="text-kryptonAmber text-base">★</span>
+        <span class="text-kryptonAmber text-base">★</span>
+      </div>
+
+      <!-- Container de Depoimentos (Fade-In & Centralizado com Altura Fixa Estável) -->
+      <div class="relative w-full h-[220px] sm:h-[240px] md:h-[180px] flex items-center justify-center mb-12 overflow-hidden">
+        
+        <!-- Feedback 1 -->
+        <div class="feedback-card opacity-100 scale-100 absolute transition-all duration-700 ease-in-out w-full flex flex-col justify-center items-center text-center" data-feedback-index="0">
+          <blockquote class="font-body text-center mx-auto text-base md:text-xl font-light text-white/90 leading-relaxed max-w-3xl italic">
+            "Eu sou extremamente exigente com meu Porsche. Já passei por vários estúdios, mas o cuidado artesanal que recebi aqui foi sem igual. A correção de pintura removeu marcas que eu achava permanentes. O carro parece ter saído da fábrica hoje."
+          </blockquote>
+          <cite class="not-italic block mt-6 text-center mx-auto">
+            <span class="font-title text-sm font-medium text-white tracking-wider block">Roberto Silveira</span>
+            <span class="font-body text-[10px] text-mutedPlat tracking-widest uppercase mt-1 block">Florianópolis, SC — Porsche 911 Carrera GTS</span>
+          </cite>
+        </div>
+
+        <!-- Feedback 2 -->
+        <div class="feedback-card opacity-0 scale-95 translate-y-2 pointer-events-none absolute transition-all duration-700 ease-in-out w-full flex flex-col justify-center items-center text-center" data-feedback-index="1">
+          <blockquote class="font-body text-center mx-auto text-base md:text-xl font-light text-white/90 leading-relaxed max-w-3xl italic">
+            "O atendimento deles é fantástico do início ao fim. Eles explicaram detalhadamente cada etapa da vitrificação. O efeito hidrofóbico na chuva é impressionante, a sujeira simplesmente não gruda. Vale cada centavo pela paz de espírito."
+          </blockquote>
+          <cite class="not-italic block mt-6 text-center mx-auto">
+            <span class="font-title text-sm font-medium text-white tracking-wider block">Marina Kovalski</span>
+            <span class="font-body text-[10px] text-mutedPlat tracking-widest uppercase mt-1 block">Balneário Camboriú, SC — Range Rover Velar</span>
+          </cite>
+        </div>
+
+        <!-- Feedback 3 -->
+        <div class="feedback-card opacity-0 scale-95 translate-y-2 pointer-events-none absolute transition-all duration-700 ease-in-out w-full flex flex-col justify-center items-center text-center" data-feedback-index="2">
+          <blockquote class="font-body text-center mx-auto text-base md:text-xl font-light text-white/90 leading-relaxed max-w-3xl italic">
+            "Impressionado com a higienização detalhada. Como médico, prezo muito pela saúde e assepsia. O couro do meu utilitário foi hidratado com produtos premium, e o cheiro original de couro novo retornou sem aquele odor forte de químicos baratos."
+          </blockquote>
+          <cite class="not-italic block mt-6 text-center mx-auto">
+            <span class="font-title text-sm font-medium text-white tracking-wider block">Dr. Carlos Eduardo</span>
+            <span class="font-body text-[10px] text-mutedPlat tracking-widest uppercase mt-1 block">Joinville, SC — Volvo XC90 Recharge</span>
+          </cite>
+        </div>
+
+        <!-- Feedback 4 -->
+        <div class="feedback-card opacity-0 scale-95 translate-y-2 pointer-events-none absolute transition-all duration-700 ease-in-out w-full flex flex-col justify-center items-center text-center" data-feedback-index="3">
+          <blockquote class="font-body text-center mx-auto text-base md:text-xl font-light text-white/90 leading-relaxed max-w-3xl italic">
+            "Deixei meu clássico para uma revitalização completa antes de um encontro de colecionadores. A dedicação e o respeito deles com a história do carro foram comoventes. O brilho tridimensional sob o sol chamou a atenção de todos."
+          </blockquote>
+          <cite class="not-italic block mt-6 text-center mx-auto">
+            <span class="font-title text-sm font-medium text-white tracking-wider block">Gustavo Nogueira</span>
+            <span class="font-body text-[10px] text-mutedPlat tracking-widest uppercase mt-1 block">Curitiba, PR — Ford Mustang Mach 1 1973</span>
+          </cite>
+        </div>
+
+      </div>
+
+      <!-- Seletor de Depoimentos em Abas Minimalistas (Sem fotos) -->
+      <div class="flex flex-wrap gap-x-6 gap-y-4 justify-center items-center z-30 font-title text-[9px] tracking-[0.2em] uppercase border-t border-white/5 pt-8 w-full max-w-lg mx-auto">
+        <button onclick="setFeedback(0)" class="hoverable avatar-btn pb-1 border-b-2 border-kryptonAmber text-white transition-all duration-300 outline-none" data-avatar-index="0">
+          Roberto S.
+        </button>
+        <button onclick="setFeedback(1)" class="hoverable avatar-btn pb-1 border-b-2 border-transparent text-mutedPlat hover:text-white transition-all duration-300 outline-none" data-avatar-index="1">
+          Marina K.
+        </button>
+        <button onclick="setFeedback(2)" class="hoverable avatar-btn pb-1 border-b-2 border-transparent text-mutedPlat hover:text-white transition-all duration-300 outline-none" data-avatar-index="2">
+          Carlos E.
+        </button>
+        <button onclick="setFeedback(3)" class="hoverable avatar-btn pb-1 border-b-2 border-transparent text-mutedPlat hover:text-white transition-all duration-300 outline-none" data-avatar-index="3">
+          Gustavo N.
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- DOBRA 5: Slotty Engine (Cockpit de Agendamento) -->
+  <!-- ========================================== -->
+  <section id="agendamento" class="relative min-h-screen w-full bg-[#050506] py-24 px-4 md:px-8 border-t border-white/5 flex flex-col justify-center items-center overflow-hidden">
+    <!-- Background Grid Lines to evoke telemetry style -->
+    <div class="absolute inset-0 hud-grid opacity-30 pointer-events-none"></div>
+    <div class="absolute w-[500px] h-[500px] rounded-full bg-kryptonAmber/5 blur-[160px] top-1/4 left-1/4 pointer-events-none"></div>
+    <div class="absolute w-[400px] h-[400px] rounded-full bg-kryptonAmber/5 blur-[140px] bottom-1/4 right-1/4 pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-6xl">
+      <!-- Header da Seção -->
+      <div class="text-center mb-16">
+        <span class="font-title text-[10px] text-kryptonAmber tracking-[0.3em] uppercase mb-4 block font-semibold animate-pulse">// COCKPIT DE AGENDAMENTO</span>
+        <h2 class="font-title text-3xl md:text-5xl font-bold uppercase tracking-tight text-white mb-4">
+          Agende sua limpeza
+        </h2>
+        <p class="font-body text-xs md:text-sm text-mutedPlat max-w-xl mx-auto leading-relaxed">
+          Calibre os parâmetros do seu atendimento. Após preencher toda a telemetria, acione o botão de ignição para confirmar sua reserva.
+        </p>
+      </div>
+
+      <!-- Container do Cockpit com flip-card para o Voucher -->
+      <div class="relative w-full min-h-[500px] flex items-center justify-center">
+        
+        <!-- Card 1: Painel do Cockpit (Formulário) -->
+        <div id="cockpit-panel" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 glass-panel p-6 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden transition-all duration-700">
+          <!-- Decorador de LED de Status no Canto -->
+          <div class="absolute top-4 right-4 flex items-center gap-2">
+            <span class="font-title text-[8px] text-mutedPlat tracking-[0.1em]">SYSTEM ONLINE</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          </div>
+
+          <!-- Lado Esquerdo: Telemetria (Inputs) - 8 Colunas -->
+          <div class="lg:col-span-8 flex flex-col gap-6">
+            
+            <!-- Linha 1: Piloto (Nome, Sobrenome) -->
+            <div>
+              <h3 class="font-title text-[10px] tracking-[0.2em] uppercase text-white/50 mb-3 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-kryptonAmber"></span>
+                01. Identificação do Piloto
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="relative">
+                  <label class="block font-title text-[9px] text-mutedPlat tracking-widest uppercase mb-1.5">Nome</label>
+                  <input type="text" id="inp-nome" class="w-full cockpit-input py-2.5 px-4 text-xs text-white bg-[#121214]" placeholder="Seu nome">
+                </div>
+                <div class="relative">
+                  <label class="block font-title text-[9px] text-mutedPlat tracking-widest uppercase mb-1.5">Sobrenome</label>
+                  <input type="text" id="inp-sobrenome" class="w-full cockpit-input py-2.5 px-4 text-xs text-white bg-[#121214]" placeholder="Seu sobrenome">
+                </div>
+              </div>
+            </div>
+
+            <!-- Linha 2: Contato (E-mail, Telefone) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-title text-[9px] text-mutedPlat tracking-widest uppercase mb-1.5">E-mail</label>
+                <input type="email" id="inp-email" class="w-full cockpit-input py-2.5 px-4 text-xs text-white bg-[#121214]" placeholder="seu@email.com">
+              </div>
+              <div>
+                <label class="block font-title text-[9px] text-mutedPlat tracking-widest uppercase mb-1.5">Telefone</label>
+                <input type="tel" id="inp-telefone" class="w-full cockpit-input py-2.5 px-4 text-xs text-white bg-[#121214]" placeholder="(11) 99999-0000">
+              </div>
+            </div>
+
+            <!-- Linha 3: Serviços e Especialistas (Dropdowns Customizados) -->
+            <div class="border-t border-white/5 pt-4">
+               <h3 class="font-title text-[10px] tracking-[0.2em] uppercase text-white/50 mb-3 flex items-center gap-2">
+                 <span class="w-1.5 h-1.5 rounded-full bg-kryptonAmber"></span>
+                 02. Calibração do Serviço
+               </h3>
+               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div>
+                   <label class="block font-title text-[9px] text-mutedPlat tracking-widest uppercase mb-1.5">Selecione o Serviço</label>
+                   <div class="relative" id="custom-select-servico">
+                     <select id="sel-servico" class="hidden">
+                       <option value="" disabled selected>Escolha um serviço...</option>
+                       <option value="vitrificacao">Vitreous Protection (Vitrificação)</option>
+                       <option value="correcao">Paint Correction (Polimento Técnico)</option>
+                       <option value="detalhamento">Interior Detailing (Detalhamento Interno)</option>
+                     </select>
+                     <button type="button" class="dropdown-trigger w-full cockpit-input py-2.5 px-4 pr-10 text-xs text-white text-left flex justify-between items-center bg-[#121214]">
+                       <span class="selected-text text-zinc-500">Escolha um serviço...</span>
+                       <span class="text-kryptonAmber text-[8px]">▼</span>
+                     </button>
+                     <div class="options-container absolute top-full left-0 w-full mt-1 bg-zinc-950 border border-white/10 rounded-lg hidden z-50 max-h-[200px] overflow-y-auto scrollbar-none shadow-2xl">
+                       <div class="option-item py-2.5 px-4 text-xs text-white/80 hover:bg-kryptonAmber hover:text-black cursor-pointer transition-all" data-value="vitrificacao">Vitreous Protection (Vitrificação)</div>
+                       <div class="option-item py-2.5 px-4 text-xs text-white/80 hover:bg-kryptonAmber hover:text-black cursor-pointer transition-all" data-value="correcao">Paint Correction (Polimento Técnico)</div>
+                       <div class="option-item py-2.5 px-4 text-xs text-white/80 hover:bg-kryptonAmber hover:text-black cursor-pointer transition-all" data-value="detalhamento">Interior Detailing (Detalhamento Interno)</div>
+                     </div>
+                   </div>
+                 </div>
+                 <div>
+                   <label class="block font-title text-[9px] text-mutedPlat tracking-widest uppercase mb-1.5">Selecione o Profissional</label>
+                   <div class="relative" id="custom-select-profissional">
+                     <select id="sel-profissional" class="hidden" disabled>
+                       <option value="" disabled selected>Selecione primeiro o serviço...</option>
+                     </select>
+                     <button type="button" class="dropdown-trigger w-full cockpit-input py-2.5 px-4 pr-10 text-xs text-white text-left flex justify-between items-center bg-[#121214] opacity-50 cursor-not-allowed" disabled>
+                       <span class="selected-text text-zinc-500">Selecione primeiro o serviço...</span>
+                       <span class="text-kryptonAmber text-[8px]">▼</span>
+                     </button>
+                     <div class="options-container absolute top-full left-0 w-full mt-1 bg-zinc-950 border border-white/10 rounded-lg hidden z-50 max-h-[200px] overflow-y-auto scrollbar-none shadow-2xl">
+                     </div>
+                   </div>
+                 </div>
+               </div>
+            </div>
+
+            <!-- Linha 4: Calendário Interativo e Horários -->
+            <div class="border-t border-white/5 pt-4">
+              <h3 class="font-title text-[10px] tracking-[0.2em] uppercase text-white/50 mb-3 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-kryptonAmber"></span>
+                03. Agenda & Cronometragem
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Mini Calendário Customizado (7 colunas) -->
+                <div class="md:col-span-7 bg-[#121214]/50 border border-white/5 p-4 rounded-xl">
+                  <div class="flex justify-between items-center mb-3">
+                    <button type="button" id="btn-prev-month" class="text-xs hoverable text-mutedPlat hover:text-white">&lt;</button>
+                    <span id="calendar-month-year" class="font-title text-[10px] tracking-wider uppercase text-white">Julho 2026</span>
+                    <button type="button" id="btn-next-month" class="text-xs hoverable text-mutedPlat hover:text-white">&gt;</button>
+                  </div>
+                  <div class="grid grid-cols-7 gap-1 text-center font-title text-[8px] text-mutedPlat uppercase tracking-widest mb-1">
+                    <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+                  </div>
+                  <div id="calendar-grid" class="grid grid-cols-7 gap-1 font-body text-xs text-center">
+                    <!-- Injetado dinamicamente por JS -->
+                  </div>
+                </div>
+                
+                <!-- Slots de Horários Customizados (5 colunas) -->
+                <div class="md:col-span-5 flex flex-col gap-2">
+                  <label class="block font-title text-[9px] text-mutedPlat tracking-widest uppercase mb-1.5">Horários Disponíveis</label>
+                  <div id="hours-grid" class="grid grid-cols-2 md:grid-cols-1 gap-2 max-h-[170px] overflow-y-auto pr-1">
+                    <div class="text-[10px] font-title text-mutedPlat p-3 border border-white/5 rounded-lg text-center">Selecione o profissional e a data...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Lado Direito: Diagnostics e Botão Ignição - 4 Colunas -->
+          <div class="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-white/5 pt-6 lg:pt-0 lg:pl-8 flex flex-col justify-between items-center text-center gap-6">
+            
+            <!-- Telemetry Status Dial -->
+            <div class="flex flex-col items-center">
+              <span class="font-title text-[9px] text-mutedPlat tracking-[0.2em] uppercase mb-4 font-semibold">// STATUS DA TELEMETRIA</span>
+              
+              <div class="relative w-36 h-36 flex items-center justify-center">
+                <!-- SVG Circular Progress Bar -->
+                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,0.03)" stroke-width="4" fill="transparent"></circle>
+                  <circle id="status-gauge-circle" cx="50" cy="50" r="42" stroke="#DA6815" stroke-width="5" stroke-linecap="round" fill="transparent" stroke-dasharray="263.89" stroke-dashoffset="263.89" class="transition-all duration-500 ease-out"></circle>
+                </svg>
+                
+                <!-- Texto Interno -->
+                <div class="absolute flex flex-col items-center">
+                  <span id="gauge-percent" class="font-title font-bold text-2xl tracking-tighter text-white">0%</span>
+                  <span id="gauge-status-text" class="font-title text-[7px] text-kryptonAmber tracking-[0.1em] uppercase font-semibold">CALIBRAÇÃO</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Diagnostics Checklist -->
+            <div class="w-full bg-[#121214]/50 border border-white/5 p-4 rounded-xl text-left font-title text-[9px] uppercase tracking-wider flex flex-col gap-2 text-mutedPlat">
+              <div id="check-pilot" class="flex justify-between items-center">
+                <span>01. Registro Piloto</span>
+                <span class="status-indicator text-red-500">PENDENTE</span>
+              </div>
+              <div id="check-calib" class="flex justify-between items-center">
+                <span>02. Calibração do Serviço</span>
+                <span class="status-indicator text-red-500">PENDENTE</span>
+              </div>
+              <div id="check-agenda" class="flex justify-between items-center">
+                <span>03. Data & Horário</span>
+                <span class="status-indicator text-red-500">PENDENTE</span>
+              </div>
+            </div>
+
+            <!-- Botão Ignição (Reservar Agora) -->
+            <div class="w-full flex flex-col items-center">
+              <button type="button" id="btn-engine-start" class="hoverable w-24 h-24 rounded-full engine-start-btn flex flex-col items-center justify-center border border-[#DA6815]/30 group cursor-pointer focus:outline-none transition-all">
+                <span class="w-16 h-16 rounded-full border border-dashed border-[#DA6815]/40 flex flex-col items-center justify-center transition-transform group-hover:scale-102">
+                  <span class="font-title text-[7px] text-white/40 tracking-[0.1em]">ENGINE</span>
+                  <span class="font-title text-[9px] text-[#DA6815] font-bold tracking-[0.15em] uppercase">START</span>
+                  <span class="font-title text-[6px] text-white/40 tracking-[0.1em]">STOP</span>
+                </span>
+              </button>
+              <span class="font-title text-[8px] text-mutedPlat tracking-[0.2em] uppercase mt-3">Pressione Para Reservar</span>
+              
+              <button type="button" id="btn-show-my-bookings" class="hoverable font-title text-[8px] text-kryptonAmber/70 hover:text-kryptonAmber tracking-[0.2em] uppercase mt-4 underline decoration-kryptonAmber/30 hover:decoration-kryptonAmber transition-all">
+                Meus Agendamentos
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Card 2: Voucher de Sucesso (Oculto Inicialmente) -->
+        <div id="voucher-panel" class="w-full max-w-md bg-zinc-950/90 border border-kryptonAmber/20 rounded-3xl p-6 md:p-8 flex flex-col items-center text-center voucher-card hidden opacity-0 scale-95 transition-all duration-700">
+          <!-- Selo de Cuidado Técnico -->
+          <div class="flex items-center gap-2 mb-4 bg-kryptonAmber/10 border border-kryptonAmber/20 py-1 px-3 rounded-full">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+            <span class="font-title text-[8px] text-kryptonAmber tracking-[0.25em] uppercase font-bold">Reserva Confirmada</span>
+          </div>
+
+          <h3 class="font-title text-xl md:text-2xl font-bold uppercase tracking-tight text-white mb-2">
+            Ignindo sua Experiência
+          </h3>
+          <p class="font-body text-[11px] text-mutedPlat mb-6 max-w-sm">
+            Seu agendamento foi registrado com sucesso em nosso ateliê de preservação.
+          </p>
+
+          <!-- Voucher Físico Simulado -->
+          <div class="w-full bg-[#121214] border border-white/5 rounded-2xl p-5 text-left flex flex-col gap-4 relative overflow-hidden">
+            <!-- Detalhe decorativo de linha de luz lateral -->
+            <div class="absolute top-0 left-0 w-[3px] h-full bg-[#DA6815]"></div>
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="block font-title text-[8px] text-mutedPlat tracking-widest uppercase mb-0.5">Proprietário</span>
+                <span id="vouch-nome" class="font-body text-xs font-semibold text-white">-</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 border-y border-white/5 py-3">
+              <div>
+                <span class="block font-title text-[8px] text-mutedPlat tracking-widest uppercase mb-0.5">Serviço Selecionado</span>
+                <span id="vouch-servico" class="font-body text-[11px] text-white font-medium">-</span>
+              </div>
+              <div>
+                <span class="block font-title text-[8px] text-mutedPlat tracking-widest uppercase mb-0.5">Técnico Encarregado</span>
+                <span id="vouch-profissional" class="font-body text-[11px] text-white font-medium">-</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="block font-title text-[8px] text-mutedPlat tracking-widest uppercase mb-0.5">Cronometragem</span>
+              <span id="vouch-data-hora" class="font-body text-xs text-[#DA6815] font-bold">-</span>
+            </div>
+          </div>
+
+          <div class="flex gap-4 w-full mt-6">
+            <button type="button" id="btn-voucher-new" class="hoverable flex-1 py-2.5 bg-kryptonAmber text-black hover:bg-white font-title text-[9px] tracking-widest uppercase font-bold rounded-lg transition-all">
+              Nova Reserva
+            </button>
+            <button type="button" id="btn-voucher-download" class="hoverable flex-1 py-2.5 border border-white/10 hover:border-kryptonAmber/40 bg-white/5 text-white font-title text-[9px] tracking-widest uppercase rounded-lg transition-all">
+              Fechar
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- POPUP MODAL: MEUS AGENDAMENTOS             -->
+    <!-- ========================================== -->
+    <div id="modal-bookings" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-500 hidden">
+      <div class="relative w-full max-w-2xl bg-[#121214] border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col gap-6 shadow-2xl scale-95 transition-transform duration-500">
+        
+        <div class="flex justify-between items-center border-b border-white/5 pb-4">
+          <h3 class="font-title text-base font-bold text-white uppercase tracking-wider flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-kryptonAmber"></span>
+            Relatório de Diagnóstico de Reservas
+          </h3>
+          <button type="button" id="btn-close-bookings" class="hoverable w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-kryptonAmber/40 transition-all font-bold">✕</button>
+        </div>
+
+        <!-- Lista de agendamentos -->
+        <div class="flex-1 max-h-[300px] overflow-y-auto scrollbar-none pr-1">
+          <table class="w-full text-left font-body text-xs text-mutedPlat">
+            <thead>
+              <tr class="font-title text-[8px] tracking-widest uppercase border-b border-white/5 pb-2 text-white/50">
+                <th class="pb-2">Serviço</th>
+                <th class="pb-2">Técnico</th>
+                <th class="pb-2">Cronometragem</th>
+                <th class="pb-2 text-right">Ação</th>
+              </tr>
+            </thead>
+            <tbody id="bookings-list-body">
+              <!-- Injetado dinamicamente -->
+            </tbody>
+          </table>
+          <div id="no-bookings-message" class="hidden text-center py-8 text-mutedPlat font-title text-[10px] tracking-wider uppercase">
+            Nenhum agendamento ativo encontrado nesta máquina.
+          </div>
+        </div>
+
+        <div class="border-t border-white/5 pt-4 text-[9px] text-mutedPlat flex justify-between items-center">
+          <span>Sincronizado com Slotty Engine</span>
+          <button type="button" id="btn-clear-bookings" class="hoverable text-red-500 hover:text-red-400 font-title uppercase tracking-widest">Apagar Registros</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- DOBRA 4: Contato & Experiência Exclusiva  -->
+  <!-- ========================================== -->
+  <section id="contato" class="relative bg-absBlack py-20 px-6 md:px-12 flex justify-center items-center overflow-hidden">
+    <div class="w-full max-w-6xl">
+      <div class="card-light-sweep relative w-full rounded-[32px] md:rounded-[48px] border border-white/10 aspect-[21/9] min-h-[380px] md:min-h-[460px] flex flex-col justify-center items-center text-center p-8 md:p-16 bg-cover bg-center select-none shadow-2xl" style="background-image: url('assets/img/contato.webp');">
+        <!-- Overlay de Contraste Escuro -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/85 z-0 rounded-[32px] md:rounded-[48px]"></div>
+
+        <!-- Conteúdo Interno -->
+        <div class="relative z-10 max-w-2xl flex flex-col items-center">
+          <span class="font-title text-[10px] text-kryptonAmber tracking-[0.3em] uppercase mb-4 block">// AGENDAMENTO EXCLUSIVO</span>
+          
+          <h2 class="font-title text-2xl md:text-4xl lg:text-5xl font-bold text-white uppercase tracking-tight leading-tight mb-4 text-shadow-lg">
+            Ficou alguma dúvida? Entre em contato.
+          </h2>
+          
+          <p class="font-body text-xs md:text-sm text-mutedPlat leading-relaxed mb-8 max-w-lg">
+            Descubra o verdadeiro potencial estético do seu automóvel. Agende seu atendimento particular com nossos especialistas técnicos.
+</p>
+
+          <!-- Botão Magnético de Contato -->
+          <a href="https://wa.me/5548999999999" target="_blank" id="magnetic-contact-btn" class="hoverable inline-flex items-center gap-4 bg-white hover:bg-zinc-100 text-black font-title text-[10px] tracking-[0.2em] uppercase pl-6 pr-2 py-2 rounded-full transition-all duration-300 shadow-2xl group">
+            <span>Iniciar Atendimento</span>
+            <span class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center transition-transform group-hover:translate-x-1 duration-300">
+              ➔
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [ FOOTER: Selo de Autenticidade & Rodapé ] -->
+  <footer class="relative bg-absBlack pt-28 pb-16 px-6 md:px-12 border-t border-white/5 overflow-hidden text-zinc-400 font-body text-xs">
+    <!-- Grid decorativo HUD de fundo para reforçar estética ultra-premium -->
+    <div class="absolute inset-0 hud-grid opacity-10 pointer-events-none z-0"></div>
+    <div class="absolute w-[300px] h-[300px] rounded-full bg-kryptonAmber/5 blur-[100px] -bottom-10 -right-10 pointer-events-none z-0"></div>
+
+    <div class="w-full max-w-6xl mx-auto relative z-10">
+      
+      <!-- Seção Principal: Grid de 4 Colunas com Painel Glassmorphism Lateral -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-white/5">
+        
+        <!-- Coluna de Destaque (5 Colunas do Grid) -->
+        <div class="lg:col-span-5 flex flex-col items-start gap-6">
+          <div class="flex items-center gap-3">
+            <img src="assets/img/logo branca.webp" alt="Krypton Car Logo" class="h-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-kryptonAmber animate-pulse"></span>
+            <span class="font-title text-[8px] tracking-[0.3em] uppercase text-zinc-500 font-bold">Estúdio de Preservação</span>
+          </div>
+          <p class="text-zinc-500 leading-relaxed max-w-sm text-[13px]">
+            Muito além de estética, elevamos a conservação de automóveis de luxo ao estado de arte técnica. Processos artesanais e telemetria precisa para cada milímetro do seu veículo.
+          </p>
+          
+          <!-- Redes Sociais com Circle Hover Glow -->
+          <div class="flex items-center gap-3.5 mt-2">
+            <a href="#" class="hoverable w-9 h-9 rounded-full border border-white/10 hover:border-kryptonAmber/60 bg-[#121214]/80 flex items-center justify-center text-zinc-400 hover:text-white hover:shadow-[0_0_12px_rgba(218,104,21,0.25)] transition-all duration-300">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" class="hoverable w-9 h-9 rounded-full border border-white/10 hover:border-kryptonAmber/60 bg-[#121214]/80 flex items-center justify-center text-zinc-400 hover:text-white hover:shadow-[0_0_12px_rgba(218,104,21,0.25)] transition-all duration-300">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+            </a>
+            <a href="#" class="hoverable w-9 h-9 rounded-full border border-white/10 hover:border-kryptonAmber/60 bg-[#121214]/80 flex items-center justify-center text-zinc-400 hover:text-white hover:shadow-[0_0_12px_rgba(218,104,21,0.25)] transition-all duration-300">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Coluna Navegação (2 Colunas do Grid) -->
+        <div class="lg:col-span-2 flex flex-col items-start gap-5">
+          <span class="font-title text-[9px] text-white tracking-[0.25em] uppercase font-bold border-b border-kryptonAmber/25 pb-1">Navegação</span>
+          <div class="flex flex-col gap-3 font-title text-[9px] uppercase tracking-widest text-zinc-500">
+            <a href="#hero" class="hoverable hover:text-white hover:translate-x-1 transition-all duration-300">Início</a>
+            <a href="#manifesto" class="hoverable hover:text-white hover:translate-x-1 transition-all duration-300">Manifesto</a>
+            <a href="#servicos" class="hoverable hover:text-white hover:translate-x-1 transition-all duration-300">Serviços</a>
+            <a href="#anatomia" class="hoverable hover:text-white hover:translate-x-1 transition-all duration-300">Anatomia</a>
+            <a href="#experiencia-cinema" class="hoverable hover:text-white hover:translate-x-1 transition-all duration-300">Filme</a>
+            <a href="#agendamento" class="hoverable hover:text-white hover:translate-x-1 transition-all duration-300">Agendamento</a>
+            <a href="#contato" class="hoverable hover:text-white hover:translate-x-1 transition-all duration-300">Contato</a>
+          </div>
+        </div>
+
+        <!-- Coluna Funcionamento (2 Colunas do Grid) -->
+        <div class="lg:col-span-2 flex flex-col items-start gap-5">
+          <span class="font-title text-[9px] text-white tracking-[0.25em] uppercase font-bold border-b border-kryptonAmber/25 pb-1">Horários</span>
+          <div class="flex flex-col gap-3.5 text-zinc-500 text-[11px]">
+            <p class="leading-relaxed">
+              <strong class="text-zinc-300 block font-title text-[8px] tracking-wider uppercase mb-0.5">Segunda a Sexta</strong>
+              08:00h às 19:00h
+            </p>
+            <p class="leading-relaxed">
+              <strong class="text-zinc-300 block font-title text-[8px] tracking-wider uppercase mb-0.5">Sábados</strong>
+              08:00h às 13:00h
+            </p>
+            <p class="leading-relaxed">
+              <strong class="text-zinc-300 block font-title text-[8px] tracking-wider uppercase mb-0.5">Domingos</strong>
+              Fechado (Particular)
+            </p>
+          </div>
+        </div>
+
+        <!-- Coluna Endereço e Contatos (3 Colunas do Grid) -->
+        <div class="lg:col-span-3 flex flex-col items-start gap-5">
+          <span class="font-title text-[9px] text-white tracking-[0.25em] uppercase font-bold border-b border-kryptonAmber/25 pb-1">Ateliê Particular</span>
+          <div class="flex flex-col gap-4 text-zinc-500 text-[11px]">
+            <p class="leading-relaxed">
+              Rodovia SC-401, Km 5, Business Park<br>
+              Florianópolis, SC — Brasil
+            </p>
+            <div class="flex flex-col gap-1">
+              <span class="text-kryptonAmber font-title text-[8px] tracking-widest uppercase">Canal Direto</span>
+              <a href="mailto:contato@kryptoncar.com.br" class="hoverable hover:text-white text-zinc-400 font-title text-[9px] tracking-widest transition-colors">contato@kryptoncar.com.br</a>
+              <a href="https://wa.me/5548999999999" target="_blank" class="hoverable hover:text-white text-zinc-400 font-title text-[9px] tracking-widest transition-colors">+55 (48) 99999-9999</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Barra de Rodapé / Direitos Autorais com Design Clean e Premium -->
+      <div class="pt-10 flex flex-col sm:flex-row justify-between items-center gap-8 text-[9px] font-title tracking-[0.2em] uppercase text-zinc-600">
+        <div class="flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-2">
+          <span>© 2026 KRYPTON CAR. Todos os direitos reservados.</span>
+          <span class="hidden md:inline text-zinc-800">|</span>
+          <a href="#" class="hoverable hover:text-zinc-400 transition-colors">Termos de Privacidade</a>
+          <span class="hidden md:inline text-zinc-800">|</span>
+          <a href="#" class="hoverable hover:text-zinc-400 transition-colors">Preservação Técnica</a>
+        </div>
+        
+        <!-- Botão Voltar ao Topo Magnético -->
+        <button id="scroll-to-top" class="hoverable w-12 h-12 rounded-full border border-white/10 hover:border-kryptonAmber/40 bg-zinc-950/80 hover:bg-kryptonAmber/10 flex items-center justify-center text-white hover:text-kryptonAmber shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300">
+          ▲
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Marca D'água Gigante com Outline Refinada -->
+    <div class="absolute bottom-[-30px] left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-0 opacity-40">
+      <span class="font-title font-bold text-[14vw] tracking-[0.2em] uppercase footer-outline-text">KRYPTON</span>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- POPUP MODAL: LIMPEZA INTERATIVA (MOBILE ONLY) -->
+  <!-- ========================================== -->
+  <div id="modal-cleaning" class="fixed inset-0 z-[10000] bg-black flex flex-col justify-between items-center opacity-0 pointer-events-none transition-opacity duration-500 hidden md:hidden">
+    <!-- Header do Popup -->
+    <div class="w-full flex justify-between items-center px-6 py-4 z-50 bg-gradient-to-b from-black to-transparent">
+      <div class="flex flex-col">
+        <span class="font-title text-[9px] text-kryptonAmber tracking-[0.25em] uppercase font-bold">Modo de Interação</span>
+        <span class="font-body text-[9px] text-zinc-500">Deslize o dedo para limpar o veículo</span>
+      </div>
+      <button type="button" id="btn-close-cleaning" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-kryptonAmber/60 font-bold bg-black/40">✕</button>
+    </div>
+
+    <!-- Container do Canvas de Limpeza (Mobile) -->
+    <div class="relative flex-1 w-full flex items-center justify-center overflow-hidden">
+      <!-- Elemento de Rotação Controlada -->
+      <div id="popup-interactive-wrapper" class="popup-interactive-container">
+        <!-- Imagem de fundo carro sujo -->
+        <img id="popup-dirty-image" src="assets/img/sujo desktop.webp" class="w-full h-full object-cover pointer-events-none absolute inset-0 z-0" alt="Carro Sujo">
+        
+        <!-- Canvas interativo que revela o carro limpo no popup -->
+        <canvas id="popup-cleaning-canvas" class="absolute inset-0 w-full h-full object-cover z-10"></canvas>
+      </div>
+    </div>
+
+    <!-- Footer do Popup -->
+    <div class="w-full flex justify-between items-center px-6 py-4 z-50 bg-gradient-to-t from-black to-transparent">
+      <span class="font-title text-[8px] text-zinc-500 tracking-widest uppercase">Toque e deslize sobre o carro</span>
+      <button type="button" id="popup-reset-btn" class="px-4 py-2 border border-white/10 bg-black/40 text-zinc-400 hover:text-white rounded-full text-[8px] font-title uppercase tracking-widest">
+        [ Sujar Novamente ]
+      </button>
+    </div>
+  </div>
+  <script src="assets/js/script.js" defer></script>
+</body>
+</html>

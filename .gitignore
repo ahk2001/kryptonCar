@@ -1,0 +1,7 @@
+# System Files
+Thumbs.db
+db.properties
+.DS_Store
+.directory
+*.log
+.gemini/

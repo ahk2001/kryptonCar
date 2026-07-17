@@ -1,0 +1,309 @@
+KRYPTON CAR — ESTÉTICA AUTOMOTIVA ULTRA-PREMIUM
+
+DOCUMENTO DE ESPECIFICAÇÃO DE PROJETO E ARQUITETURA WEB
+
+Este documento serve como a especificação de design, experiência de usuário (UX/UI), redação (Copywriting), engenharia de animações e integração de agendamento para o desenvolvimento do website institucional/portfólio da Krypton Car.
+
+1. DIRETRIZES DA MARCA & DESIGN SYSTEM
+
+A identidade visual da Krypton Car foge do "clichê" de oficinas mecânicas tradicionais. O foco absoluto aqui é luxo discreto (Quiet Luxury), sofisticação contemporânea e purismo automotivo — voltado para proprietários de veículos executivos de alto padrão, sedans elétricos modernos e SUVs premium (como Porsche Taycan, Audi e-tron GT, Mercedes-AMG e Range Rover).
+
+1.1 Paleta de Cores (Dark Mode Nativo)
+
+Krypton Amber (Laranja Cobre): #DA6815 (Tom refinado de cobre aquecido, usado cirurgicamente para destaques críticos, botões de ação primária, focos de luz e estados ativos).
+
+Absolute Black (Fundo Primário): #050506 (Preto profundo e sofisticado para criar contraste infinito com os reflexos e o cobre).
+
+Carbon Gray (Fundo Secundário): #121214 (Para demarcar painéis, cartões com efeito de vidro fosco e profundidade tridimensional).
+
+Pure White (Textos de Destaque): #FFFFFF (Leitura limpa, nítida e de alto impacto).
+
+Muted Platinum (Textos de Apoio): #8E8E93 (Cinza refinado para diminuir a fadiga visual e criar uma hierarquia elegante).
+
+1.2 Tipografia
+
+Títulos & Headers: Space Grotesk (Fonte geométrica, moderna, com excelente espaçamento e visual contemporâneo).
+
+Textos de Corrido & Formulários: Inter (Fonte sans-serif limpa, altamente legível, polida e elegante).
+
+1.3 Direção de Arte, Imagens e Mídia
+
+High Contrast Matte (Estética de Showroom): O site deve passar a sensação de uma galeria de arte automotiva ou de um showroom premium à noite. Silhuetas sóbrias, reflexos limpos e iluminação indireta.
+
+Integração de Vídeo Atmosférico: Utilização de vídeos de fundo em câmera lenta (slow-motion), sem som e com baixa saturação, cobrindo o background de forma imersiva e elegante, aplicando máscaras escuras para manter a legibilidade impecável dos textos.
+
+Imagens de Texturas Macro: Fotos focadas em texturas detalhadas de materiais de alta qualidade: costura de couro premium, reflexos espelhados de verniz cristalizado, gotículas de água repelidas em superfícies vitrificadas.
+
+Efeito Glassmorphism: Painéis elegantes com desfoque de fundo suave (backdrop-filter: blur(20px)) com bordas finas semi-transparentes (rgba(255, 255, 255, 0.05)).
+
+2. COMPORTAMENTO E INTERAÇÕES (Efeitos Modernos e Fluidos)
+
+A navegação foi projetada para ser extremamente fluida e agradável, valorizando a experiência visual sem poluir a tela.
+
+2.1 Efeito Header Morphing
+
+O menu superior começa integrado ao topo da página, minimalista e limpo.
+
+Ao iniciar o scroll, o header se transforma suavemente em uma pílula flutuante estilizada em glassmorphism com cantos arredondados (rounded-full) e uma borda sutil em tom cobre.
+
+O botão de agendamento no Header possui efeito magnético suave: ele atrai o cursor do mouse de forma elegante quando o usuário aproxima o ponteiro.
+
+2.2 Cursor Minimalista Dinâmico
+
+O cursor padrão do sistema é substituído por um círculo fino na cor cobre que segue o mouse com um leve atraso físico (easing), garantindo suavidade.
+
+Ao passar por cima de botões e elementos clicáveis, o círculo se expande suavemente, servindo como um indicador visual de interatividade.
+
+2.3 Transição de Seções (Scroll Suave)
+
+Transições suaves com efeitos de parallax refinados.
+
+A seção de catálogo de serviços utiliza um sistema de rolagem horizontal confortável para o usuário, ideal para exibir portfólios no desktop de forma moderna.
+
+3. DETALHAMENTO DE ARQUITETURA DE DOBRAS (Folds)
+
+[ TOPO: Header Morphing ]
+   ├── Dobra 1: A Arte da Preservação (Hero com Vídeo e Luz)
+   ├── Dobra 2: Nossa Filosofia (O Manifesto Editorial)
+   ├── Dobra 3: Anatomia do Cuidado (Inspeção Interativa)
+   ├── Dobra 4: Ateliê de Serviços (Catálogo de Soluções com Mídia)
+   ├── Dobra 5: Slotty Engine (O Sistema de Agendamento)
+   └── Dobra 6: Selo de Autenticidade (Rodapé Executivo)
+
+
+3.1 DOBRA 1: A Arte da Preservação (Hero Section)
+
+A Dobra 1 abre o site com uma atmosfera de requinte e exclusividade. Uma seção limpa, sem excesso de elementos, focada no impacto visual de um veículo premium.
+
+3.1.1 Fundo Cinematográfico em Vídeo
+
+Background de Elite: Sob o conteúdo de texto, um elemento <video> em HTML5 exibe em loop contínuo e silencioso um corte cinematográfico de um sedan de luxo deslizando sob luzes de estúdio à noite.
+
+Máscara de Contraste: Uma camada semi-transparente preta com gradiente linear suave para o fundo (bg-gradient-to-b from-black/40 via-black/80 to-[#050506]) sobrepõe o vídeo, garantindo que o texto em branco puro se destaque com nitidez absoluta.
+
+Vídeo Recomendado: https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c054273b1e2e016f46b95b8716cc9836&profile_id=165&oauth2_token_id=57447761 (ou loop similar de estética noturna automotiva premium).
+
+3.1.2 Revelação Elegante do Veículo (Silhouette Light)
+
+Conceito Visual: À direita ou centralizado abaixo do texto, é exibida a silhueta em alta definição de um sedan elétrico de luxo contemporâneo (Porsche Taycan).
+
+O Efeito de Iluminação: O movimento horizontal do mouse controla suavemente um gradiente de luz virtual na tela. Conforme o cursor desliza, as linhas de design do carro (os faróis de LED elegantes, a curva suave do teto e a lanterna traseira contínua) se acendem de forma sutil em tom cobre (#DA6815), revelando as curvas da carroceria de forma impecável.
+
+3.1.3 Animação de Entrada dos Textos
+
+A tipografia surge de forma suave para prender a atenção do visitante com elegância:
+
+Subtítulo: [ ATELIÊ DE ESTÉTICA AUTOMOTIVA PREMIUM ]
+
+Efeito: Surge com um fade-in delicado e espaçamento de letras progressivo.
+
+Título Principal: PRECISÃO NO DETALHE. ARTE NA PRESERVAÇÃO.
+
+Efeito: As duas linhas de texto deslizam verticalmente a partir de marcas invisíveis, encontrando-se no centro de forma perfeitamente amortecida.
+
+Micro-copy de Apoio:
+
+"A Krypton Car une técnicas artesanais e os melhores materiais do mundo para proteger, conservar e elevar o acabamento de veículos de alta gama. Redefinimos o conceito de brilho original."
+
+3.1.4 Botão "Agendar Experiência"
+
+Comportamento: Atração magnética sutil (se desloca levemente em direção ao mouse em um raio de $40\text{px}$).
+
+Estilo Visual: Fundo transparente com borda fina em tom cobre (#DA6815). No hover, o botão é preenchido de forma fluida por uma cor sólida e o texto se ajusta para preto absoluto (#050506), acompanhado de um brilho de luz difuso elegante ao fundo.
+
+3.2 DOBRA 2: Nossa Filosofia (O Manifesto)
+
+A Dobra 2 convida o visitante a compreender o cuidado por trás do serviço. É um momento de leitura focado, minimalista e de altíssimo impacto estético.
+
+3.2.1 Revelação de Texto por Scroll
+
+Mecânica: O bloco de texto do manifesto é exibido no centro da tela em tamanho grande (fonte de alta qualidade). Ao rolar a página, o texto é revelado de forma dinâmica.
+
+Efeito Cromático: À medida que o scroll avança, as palavras mudam suavemente de um cinza-escuro opaco (#1A1A1C) para um Branco Puro (#FFFFFF) e se estabilizam em um refinado Krypton Amber (#DA6815) quando passam pelo ponto central de leitura, simbolizando a restauração da superfície.
+
+3.2.2 Manifesto - Redação Editorial
+
+Copy:
+"O tempo é implacável com as superfícies. A poeira das estradas atua como micro-abrasivo, as lavagens convencionais criam marcas e a exposição diária apaga o brilho original da pintura. Na Krypton Car, nós não oferecemos limpezas rápidas. Oferecemos preservação técnica. Cada curva, costura e milímetro do seu veículo é tratado de forma artesanal. Corrigimos imperfeições invisíveis para criar um reflexo espelhado absoluto e duradouro. É a união entre a paixão automotiva e o acabamento perfeito."
+
+3.2.3 Os Pilares do Ateliê
+
+Substituindo botões industriais pesados, um seletor de abas minimalistas permite ao cliente ler as duas vertentes do estúdio:
+
+Aba 1: Cuidado Artesanal ("Processos manuais meticulosos, polimento em múltiplas etapas e foco obsessivo nos acabamentos internos e externos.")
+
+Aba 2: Proteção Premium ("Aplicação dos melhores revestimentos cerâmicos do mercado mundial, garantindo repelência à água, proteção contra raios UV e facilidade de manutenção.")
+
+3.3 DOBRA 3: Anatomia do Cuidado (Interactive Inspection)
+
+Esta dobra demonstra a excelência do serviço na prática, mostrando como cada área crítica do veículo recebe atenção individualizada.
+
+3.3.1 O Veículo em Destaque com Imagem Macro
+
+Conceito Visual: Uma imagem lateral em alta definição de um carro executivo de perfil (como um Audi e-tron GT) centralizado contra o fundo escuro (#121214).
+
+Link da Imagem: https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1200&q=80
+
+Hotspots de Cuidado: Três pontos delicados e pulsantes em tom cobre aparecem nas áreas da Pintura, dos Vidros e das Rodas.
+
+3.3.2 Painel de Detalhes com Troca de Imagem Dinâmica
+
+Ao clicar em um dos pontos, o restante do carro ganha um desfoque suave de profundidade de campo e um painel lateral minimalista em vidro fosco desliza na tela. O painel exibe uma imagem macro rica em detalhes correspondente à área selecionada:
+
+Ponto 1: Pintura (Correção de Brilho & Proteção)
+
+Imagem Close-up: Detalhe de reflexo nítido de luz em lataria polida e lisa (https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80).
+
+Copy: "Processo minucioso de nivelamento do verniz para eliminação de micro-riscos de lavagem, seguido pela aplicação de vitrificadores importados de alta espessura. Proteção duradoura e brilho profundo estilo vitrine."
+
+Ponto 2: Rodas & Pinças (Proteção de Alta Temperatura)
+
+Imagem Close-up: Roda de liga leve de luxo impecável (https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80).
+
+Copy: "Aplicação de revestimento cerâmico hidrofóbico específico para ligas leves e pinças de freio. Repele com facilidade a poeira gerada nas frenagens, facilitando a limpeza e evitando manchas."
+
+Ponto 3: Vidros (Repelência & Clareza Óptica)
+
+Imagem Close-up: Gotículas de água com alta repelência escorrendo pelo para-brisa (https://images.unsplash.com/photo-1518331647614-7a1f04db3437?auto=format&fit=crop&w=600&q=80).
+
+Copy: "Tratamento de alta performance que sela os poros do vidro, criando um ângulo de repelência à água excepcional. Melhora drasticamente a visibilidade em dias de chuva e evita o acúmulo de marcas de água."
+
+Simulador de Processo (Antes e Depois): Um botão interativo executa uma barra de arraste (slider) sobreposta que permite ao usuário deslizar um divisor para ver visualmente a diferença em tempo real entre um verniz desgastado e fosco (antes) e o mesmo verniz polido e selado com vitrificador (depois).
+
+3.4 DOBRA 4: Ateliê de Serviços (O Catálogo Horizontal)
+
+Uma exibição moderna que se desloca lateralmente conforme o usuário avança o scroll, apresentando as soluções exclusivas da Krypton Car de forma organizada.
+
+3.4.1 Cards de Serviços com Imagens de Capa
+
+Os cards utilizam efeito de vidro fumê escuro sobreposto a imagens macro artísticas e abstratas que remetem a cada serviço:
+
+Vitreous Protection (Proteção Cerâmica):
+
+Imagem de Capa: Superfície líquida hidrofóbica com alta tensão superficial (https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=400&q=80).
+
+Copy: Aplicação de revestimento cerâmico premium na pintura para máxima resistência contra agentes climáticos e brilho de alta definição. (Tempo de processo: 24h).
+
+Paint Correction (Nivelamento Óptico):
+
+Imagem de Capa: Reflexo perfeito em metal polido escuro (https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=400&q=80).
+
+Copy: Polimento técnico em múltiplas etapas para correção total de hologramas e micro-riscos, restaurando a cor original do veículo. (Tempo de processo: 36h).
+
+Interior Detailing (Cuidado Interno):
+
+Imagem de Capa: Volante de couro e painel refinado escuro (https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=400&q=80).
+
+Copy: Higienização detalhada da cabine, hidratação de couros nobres com toque seco e impermeabilização de tecidos premium. (Tempo de processo: 12h).
+
+3.4.2 Integração com o Agendamento
+
+Cada card possui o botão [ Selecionar Serviço ]. Ao clicar, a página rola suavemente para o formulário de agendamento (Dobra 5) com o serviço correspondente automaticamente selecionado no formulário.
+
+3.5 DOBRA 5: Slotty Engine (O Sistema de Agendamento)
+
+A seção principal de demonstração da sua ferramenta de agendamento online (Slotty). Ela deve transmitir profissionalismo, facilidade de agendamento em tempo real e exclusividade.
+
+3.5.1 Layout Clean e Intuitivo (3 Colunas)
+
+Coluna 1 (Dados do Cliente):
+
+Inputs elegantes para Nome, Sobrenome, Email e Telefone.
+
+Rótulos (labels) modernos que deslizam de forma suave quando o campo é focado.
+
+Seletores de dropdown impecáveis para escolher o Serviço desejado e o Profissional (Especialista) de preferência.
+
+Coluna 2 (Calendário & Horários):
+
+Um calendário mensal minimalista e intuitivo.
+
+Slots de horários exibidos de forma clara: Horários Livres (com badge discreto verde "Disponível") e Horários Ocupados (com visual cinza clássico e informativo "Reservado para Detalhamento").
+
+Coluna 3 (Confirmação & Resumo):
+
+Exibição clara e organizada do serviço escolhido, profissional selecionado e tempo de dedicação necessário na cabine de estética.
+
+Botão Principal: "Confirmar Agendamento" (Laranja cobre sólido, de alto destaque, com animação sutil de carregamento no clique).
+
+Botão Secundário: "Meus Agendamentos" (Permite ao usuário consultar de forma simples os agendamentos salvos localmente na sessão do navegador em um painel popup limpo).
+
+3.5.2 Jornada de Sucesso (O Voucher de Confirmação)
+
+Ao preencher todos os dados solicitados e confirmar, o formulário realiza uma transição suave e se transforma em um elegante Voucher de Confirmação:
+
+Mensagem: "Agendamento Realizado com Sucesso!" em tom elegante.
+
+Resumo: Exibe o Nome completo, Serviço, Especialista selecionado, além da Data e Hora marcados.
+
+Detalhes de Boas-Vindas: Instruções simpáticas e profissionais sobre como entregar o veículo no estúdio no horário marcado.
+
+QR-Code de Identificação: Um código QR limpo e minimalista para identificação rápida na chegada do veículo ao ateliê.
+
+Profissionais Disponíveis para Seleção:
+
+Marcus Vance (Especialista em Correção de Pintura e Vitrificação)
+
+Helena Frost (Especialista em Detalhamento Interno e Couros Nobres)
+
+3.6 DOBRA 6: Selo de Autenticidade (O Rodapé Executivo)
+
+O encerramento do site traz robustez visual, valorizando o design e fechando a parceria técnica com o seu motor de agendamentos.
+
+3.6.1 Branding Brutalista Sofisticado
+
+No fundo do rodapé, o nome KRYPTON CAR é exibido em tamanho monumental de ponta a ponta da tela, estruturado apenas com uma borda fina cinza de $1\text{px}$ (rgba(255, 255, 255, 0.05)), criando um efeito elegante de marca d'água.
+
+3.6.2 Navegação & Informações Institucionais
+
+Dividido em colunas limpas e com espaçamento generoso:
+
+Serviços: Proteção Cerâmica, Correção de Verniz, Detalhamento de Cabine.
+
+Institucional: Nossa Filosofia, Termos de Serviço, Privacidade de Dados.
+
+Contato: Av. Europa, Jardim América, São Paulo, SP | contato@kryptoncar.com | (11) 99876-5432.
+
+3.6.3 Botão "Voltar ao Topo"
+
+Um pequeno círculo minimalista no centro com uma seta elegante apontando para cima (↑), atraído magneticamente pelo mouse para um retorno suave e rápido ao início da página.
+
+3.6.4 Selo Slotty Integration
+
+No canto inferior direito, o selo institucional finaliza o design: Agendamento gerenciado via Slotty Engine © 2026. com um pequeno ponto luminoso que pisca suavemente em verde para indicar status ativo e online do sistema de reservas.
+
+4. ARQUITETURA TÉCNICA, SEGURANÇA E PERFORMANCE
+
+Por se tratar de um site voltado a um portfólio diferenciado para a sua empresa de agendamentos, o site precisa performar como uma aplicação moderna e segura de altíssimo padrão.
+
+4.1 Estratégias de Performance
+
+Imagens Otimizadas: Todo o material gráfico e de background em formato .webp ou .avif de última geração para garantir carregamento instantâneo de imagens escuras com transições suaves de gradiente (evitando o efeito de "banding" de cores no dark mode).
+
+Aceleração de Hardware para Animações: Uso prioritário de propriedades CSS que utilizam a GPU (como transform e opacity) para transições suaves de 60fps mesmo em celulares de entrada.
+
+Lazy Loading Inteligente: Apenas a Dobra 1 (Hero) carrega inicialmente. As imagens interativas das dobras inferiores são injetadas em memória sob demanda conforme a aproximação do scroll.
+
+4.2 Segurança do Fluxo de Agendamento (Slotty)
+
+Embora o site seja uma simulação para portfólio, ele deve demonstrar conceitos robustos de segurança que agreguem valor para os clientes da sua empresa de agendamento (Slotty):
+
+Sanitização de Inputs: Proteção ativa nos campos de input do agendamento contra injeções de scripts (XSS).
+
+Double-Booking Lock: Lógica que simula o bloqueio do slot temporal assim que o usuário clica em "Selecionar", impedindo agendamentos duplicados.
+
+Criptografia Local: Salvamento seguro dos registros de agendamento na sessão local do usuário para as consultas.
+
+5. ROTEIRO DE DESENVOLVIMENTO (Etapa por Etapa)
+
+Para tirar o site do papel e integrá-lo com maestria ao seu ecossistema Antigravity, siga estes passos de desenvolvimento:
+
+Etapa 01 (Estrutura Base HTML/Tailwind): Definir o setup do esqueleto do site com fontes importadas do Google Fonts (Space Grotesk e Inter) e estruturar a paleta de cores escura com as classes utilitárias do Tailwind CSS.
+
+Etapa 02 (Desenvolvimento do Cursor e Header): Codificar o script JavaScript que rastreia as coordenadas do mouse, aplica a física de suavização (lerp) no elemento cursor de LED laranja cobre e gerencia a transformação visual do header ao rolar a página.
+
+Etapa 03 (Efeitos de Scroll e GSAP/CSS Transitions): Implementar as transições de rolagem horizontal da seção de serviços e o zoom progressivo da transição da Hero.
+
+Etapa 04 (Simulação da Interface Slotty): Criar a maquete interativa do agendamento, garantindo que o usuário possa interagir com o calendário, mudar o serviço ativo, alterar os horários dinamicamente e receber um feedback de sucesso refinado.
+
+Etapa 05 (Polimento e Responsividade): Adaptar toda a experiência para dispositivos móveis, convertendo os efeitos de hover (que dependem de mouse) para gestos de toque (swipe e tap targets com feedbacks táteis visuais na tela do celular).
