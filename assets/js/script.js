@@ -544,7 +544,7 @@
         listenerElement: heroSection,
         image: cleanImage,
         brushRadius: () => (window.innerWidth < 768 ? 40 : 60),
-        isActive: () => cleaningActive,
+        isActive: () => cleaningActive && window.innerWidth >= 1024,
         customActiveCheck: () => heroVisible,
         onMove: () => {
           if (cleanedPaths.length - lastCheckLength >= 10) {
